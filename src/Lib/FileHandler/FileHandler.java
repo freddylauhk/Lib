@@ -1,5 +1,8 @@
 package Lib.FileHandler;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -69,4 +72,41 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Delete the file if exist
+     * @param FilePath
+     * @throws IOException
+     */
+    public static void DeleteFile(String FilePath) throws IOException {
+        File file = new File(FilePath);
+        Files.deleteIfExists(file.toPath());
+    }
+
+    /**
+     * Write file with StringBuilder, overwrite if file already exist
+     * @param FilePath
+     * @param Builder
+     * @throws IOException
+     */
+    public static void WriteToFile(String FilePath, StringBuilder Builder) throws IOException{
+        WriteToFile(FilePath, Builder, false);
+    }
+
+    /**
+     * Write file with StringBuilder, optional appending if file exists
+     * @param FilePath
+     * @param Builder
+     * @param AppendFlag
+     * @throws IOException
+     */
+    public static void WriteToFile(String FilePath, StringBuilder Builder, boolean AppendFlag) throws IOException{
+
+        File file = new File(FilePath);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(file, AppendFlag))) {
+            writer.append(Builder.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

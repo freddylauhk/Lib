@@ -23,6 +23,20 @@ FileHandler.CheckFile(FilePath, false);
 ```
 Check specific File exists or not, optional create file flag to create file if not exists
 
+Delete File
+```
+FileHandler.DeleteFile(FilePath);
+```
+Delete the file if exist
+
+Write File
+```
+FileHandler.WriteToFile(FilePath, stringBuilder);
+FileHandler.WriteToFile(FilePath, stringBuilder, true);
+FileHandler.WriteToFile(FilePath, stringBuilder, false);
+```
+Write file with StringBuilder, overwrite if file already exist (false for overwrite if the file exist, default is false)
+
 ## Logger
 Import library content
 ```
